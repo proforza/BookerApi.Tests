@@ -1,4 +1,4 @@
-name: .NET
+name: BookerApi.Tests.Runner
 
 on:
   push:
@@ -8,7 +8,8 @@ on:
 
 jobs:
   build:
-
+    name: Build and run tests
+    
     runs-on: ubuntu-latest
 
     steps:
