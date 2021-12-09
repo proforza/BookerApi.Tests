@@ -25,11 +25,12 @@ I wanted to create more readable and best-looking html reports using Allure, but
 ## Tests description
 
 Tests order:
-	1) HealthCheckTests - to be shure that API is available
-	2) CreateTokenTests - to create an auth token (will be used only once, all other tests will use basic auth)
-	3) TokenAuthTests - test PATCH request using token-based auth
-	4) BookingValidationsTests - get a random booking, validate fields and creating booking with incorrect data 
-	5) BookingTests - full cycle of a Booking entity. Create -> update -> patch -> delete.
+
+  1. **HealthCheckTests** - to be shure that API is available
+  2. **CreateTokenTests** - to create an auth token (will be used only once, all other tests will use basic auth)
+  3. **TokenAuthTests** - test PATCH request using token-based auth
+  4. **BookingValidationsTests** - get a random booking, validate fields and creating booking with incorrect data 
+  5. **BookingTests** - full cycle of a Booking entity. Create -> update -> patch -> delete.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
