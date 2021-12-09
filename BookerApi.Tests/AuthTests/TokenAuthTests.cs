@@ -44,7 +44,7 @@ namespace BookerApi.Tests.AuthTests
             int randomId = bookingIds[rnd.Next(0, bookingIds.Count - 1)].bookingid;
             var request = new HttpRequestMessage(HttpMethod.Patch, $"booking/{randomId}");
             request.Headers.Add("Cookie", $"token={BaseClientTokenAuth.GetToken()}"); // using "Cookie: token=123pwd" header
-            request.Content = new StringContent(JsonSerializer.Serialize( new { firstname = "Giovanni" } ), Encoding.UTF8, "application/json");
+            request.Content = new StringContent(JsonSerializer.Serialize( new { firstname = "Giovanni" } ), Encoding.UTF8, "application/json"); // changing the name
 
             // Act
             HttpResponseMessage response = await httpClient.SendAsync(request);

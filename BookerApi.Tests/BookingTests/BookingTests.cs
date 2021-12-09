@@ -8,6 +8,7 @@ using System;
 using BookerApi.Tests.Classes;
 using System.Collections.Generic;
 using System.Linq;
+using BookerApi.Tests.Helpers;
 
 namespace BookerApi.Tests.BookingTests
 {
@@ -22,25 +23,14 @@ namespace BookerApi.Tests.BookingTests
         public async Task Booking_ShouldBe_Created()
         {
             // Arrange
-            Random rnd = new();
-
-            #region randomizing dates
-
-            var randomCheckinMonth = rnd.Next(1,12); // some magic numbers just to create more realistic dates
-            var randomCheckinDay = rnd.Next(1, 26);
-            var randomCheckoutMonth = randomCheckinMonth == 12 ? 12 : (randomCheckinMonth + 1);
-            var randomCheckoutDay = randomCheckoutMonth == randomCheckinMonth ? rnd.Next(randomCheckinDay, 28) : rnd.Next(1, 28);
-            var randomCheckinDate = new DateTime(2022, randomCheckinMonth, randomCheckinDay);
-            var randomCheckoutDate = new DateTime(2022, randomCheckoutMonth, randomCheckoutDay);
-
-            #endregion randomizing dates
+            BookingDates randomDates = RandomizerHelper.GetRandomDates();
 
             Booking booking = new() { 
                 firstname = "Aleksey",
                 lastname = "Kulikov",
-                totalprice = rnd.Next(50,1000),
+                totalprice = RandomizerHelper.GetRandomPrice(),
                 depositpaid = false,
-                bookingdates = new BookingDates() { checkin = randomCheckinDate.ToString("yyyy-MM-dd"), checkout = randomCheckoutDate.ToString("yyyy-MM-dd") },
+                bookingdates = new BookingDates() { checkin = randomDates.checkin, checkout = randomDates.checkout },
                 additionalneeds = null
             }; // test "seed" Booking
 
