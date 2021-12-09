@@ -10,16 +10,16 @@ Frameworks used: .NET5, nUnit.
 Just clone this repo locally, open a cmd/powershell window from the directory that contains BookerApi.Tests.csproj and finally run dotnet command:
 
 ```bash
-dotnet test BookerApi.Tests.csproj -c Release -r Results --logger trx
+dotnet test BookerApi.Tests.csproj -c Release -r TestResults --verbosity normal --logger trx
 ```
 
 Or if you want to run compiled .dll just download the build artifacts and run command (in the root folder):
 
 ```bash
-dotnet test .\BookerApi.Tests.dll
+dotnet test .\BookerApi.Tests.dll --verbosity normal --logger trx
 ```
 
-Result .trx file will appear in the /Results folder. The most CI/CD tools (TeamCity, Jenkins, Azure DevOps etc.) support this type of file.
+Result .trx file will appear in the /TestResults folder ( param must be added to the dotnet command). The most CI/CD tools (TeamCity, Jenkins, Azure DevOps etc.) support this type of file.
 I wanted to create more readable and best-looking html reports using Allure, but unfortunately it supports only .NET 4.7.\* and .net core 2.\*.
 
 ## Tests description
