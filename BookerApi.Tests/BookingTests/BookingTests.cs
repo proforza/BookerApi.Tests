@@ -38,8 +38,7 @@ namespace BookerApi.Tests.BookingTests
 
             // Act
             HttpResponseMessage response = await httpClient.PostAsync("booking", new StringContent(contentBody, Encoding.UTF8, "application/json"));
-            var responseBody = await response.Content.ReadAsStringAsync();
-            CreatedBooking = JsonSerializer.Deserialize<BookingRoot>(responseBody);
+            CreatedBooking = JsonSerializer.Deserialize<BookingRoot>(await response.Content.ReadAsStringAsync());
 
             // Assert
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -72,8 +71,7 @@ namespace BookerApi.Tests.BookingTests
 
             // Act
             HttpResponseMessage response = await httpClient.PutAsync($"booking/{CreatedBooking.bookingid}", new StringContent(contentBody, Encoding.UTF8, "application/json"));
-            var responseBody = await response.Content.ReadAsStringAsync();
-            var updatedBooking = JsonSerializer.Deserialize<Booking>(responseBody);
+            var updatedBooking = JsonSerializer.Deserialize<Booking>(await response.Content.ReadAsStringAsync());
 
             // Assert
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -101,8 +99,7 @@ namespace BookerApi.Tests.BookingTests
 
             // Act
             HttpResponseMessage response = await httpClient.PatchAsync($"booking/{CreatedBooking.bookingid}", new StringContent(contentBody, Encoding.UTF8, "application/json"));
-            var responseBody = await response.Content.ReadAsStringAsync();
-            var updatedBooking = JsonSerializer.Deserialize<Booking>(responseBody);
+            var updatedBooking = JsonSerializer.Deserialize<Booking>(await response.Content.ReadAsStringAsync());
 
             // Assert
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -124,8 +121,7 @@ namespace BookerApi.Tests.BookingTests
 
             // Act
             HttpResponseMessage response = await httpClient.GetAsync("booking");
-            var responseBody = await response.Content.ReadAsStringAsync();
-            bookingIds = JsonSerializer.Deserialize<List<BookingRoot>>(responseBody);
+            bookingIds = JsonSerializer.Deserialize<List<BookingRoot>>(await response.Content.ReadAsStringAsync());
 
             // Assert
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -152,8 +148,7 @@ namespace BookerApi.Tests.BookingTests
 
             // Act
             HttpResponseMessage response = await httpClient.GetAsync("booking");
-            var responseBody = await response.Content.ReadAsStringAsync();
-            bookingIds = JsonSerializer.Deserialize<List<BookingRoot>>(responseBody);
+            bookingIds = JsonSerializer.Deserialize<List<BookingRoot>>(await response.Content.ReadAsStringAsync());
 
             // Assert
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);

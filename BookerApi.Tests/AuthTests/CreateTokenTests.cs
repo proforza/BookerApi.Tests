@@ -22,8 +22,8 @@ namespace BookerApi.Tests
 
             // Act
             HttpResponseMessage response = await httpClient.PostAsync("auth", new StringContent(contentBody, Encoding.UTF8, "application/json"));
-            var responseBody = await response.Content.ReadAsStringAsync();
-            BaseClientTokenAuth.SetToken(JsonSerializer.Deserialize<TokenEntity>(responseBody).token); // setting the token to BaseClientTokenAuth
+            var token = JsonSerializer.Deserialize<TokenEntity>(await response.Content.ReadAsStringAsync()).token;
+            BaseClientTokenAuth.SetToken(token); // setting the token to BaseClientTokenAuth
 
             // Assert
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);

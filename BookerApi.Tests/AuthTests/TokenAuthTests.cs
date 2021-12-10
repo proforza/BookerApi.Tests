@@ -24,8 +24,7 @@ namespace BookerApi.Tests.AuthTests
 
             // Act
             HttpResponseMessage response = await httpClient.GetAsync("booking");
-            var responseBody = await response.Content.ReadAsStringAsync();
-            bookingIds = JsonSerializer.Deserialize<List<BookingRoot>>(responseBody);
+            bookingIds = JsonSerializer.Deserialize<List<BookingRoot>>(await response.Content.ReadAsStringAsync());
 
             // Assert
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -48,8 +47,7 @@ namespace BookerApi.Tests.AuthTests
 
             // Act
             HttpResponseMessage response = await httpClient.SendAsync(request);
-            var responseBody = await response.Content.ReadAsStringAsync();
-            var randomPatchedBooking = JsonSerializer.Deserialize<Booking>(responseBody);
+            var randomPatchedBooking = JsonSerializer.Deserialize<Booking>(await response.Content.ReadAsStringAsync());
 
             // Assert
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
